@@ -1,0 +1,42 @@
+.profile {
+  background-color: grey;
+  border-radius: 5px;
+  width: 300px;
+  height: 450px;
+  margin: 50px;
+  padding: 20px;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: beige;
+}
+
+.description {
+  padding: 10px;
+}
+
+.description > p {
+  display: block;
+  margin: 0 auto;
+}
+
+.stats {
+  display: flex;
+  justify-content: space-around;
+  list-style: none;
+  padding: 0px;
+}
+.p {
+  display: block;
+  padding: 10px;
+}
+.span {
+  display: block;
+  padding: 5px;
+}
+
+.avatar {
+  background-color: wheat;
+  border-radius: 50px;
+}
