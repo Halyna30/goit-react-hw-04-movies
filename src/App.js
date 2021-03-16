@@ -1,32 +1,32 @@
 import React from 'react';
-import user from './Components/Profile/user.json';
-import Profile from './Components/Profile';
+import { Route, NavLink, Switch } from 'react-router-dom';
+import HomePage from './views/HomePage';
+import MoviesPage from './views/MoviesPage';
+import MovieDetailsPage from './views/MovieDetailsPage';
+import Cast from './views/Cast';
+import Reviews from './views/Reviews';
+import NotFoundPage from './views/NotFoundPage';
 
-import statisticalData from './Components/Statistics/statistical-data.json';
-import TitleStat from './Components/Statistics/TitleStat';
-import Statistics from './Components/Statistics/Statistics';
+const App = () => (
+  <>
+    <ul>
+      <li>
+        <NavLink to="/">Home</NavLink>
+      </li>
+      <li>
+        <NavLink to="/movies">Movies</NavLink>
+      </li>
+    </ul>
+    <Switch>
+      <Route exact path="/" component={HomePage} />
+      <Route exact path="/movies" component={MoviesPage} />
+      <Route path="/movies/:movieId" component={MovieDetailsPage} />
 
-import friends from './Components/FriendList/friends.json';
-import FriendList from './Components/FriendList';
+      <Route path="/movies/:movieId/cast" component={Cast} />
+      <Route path="/movies/:movieId/reviews" component={Reviews} />
+      <Route component={NotFoundPage} />
+    </Switch>
+  </>
+);
 
-import transactions from './Components/Transaction-history/transactions.json';
-import TransactionHistory from './Components/Transaction-history';
-
-export default function App() {
-  return (
-    <>
-      <Profile
-        name={user.name}
-        tag={user.tag}
-        location={user.location}
-        avatar={user.avatar}
-        stats={user.stats}
-      />
-      <TitleStat title="Upload stats">
-        <Statistics stats={statisticalData} />
-      </TitleStat>
-      <FriendList friends={friends} />
-      <TransactionHistory items={transactions} />;
-    </>
-  );
-}
+export default App;
