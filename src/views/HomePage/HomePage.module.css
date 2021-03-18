@@ -1,0 +1,13 @@
+.listMovies {
+  list-style: none;
+}
+
+.title {
+  margin: 20px;
+}
+
+.link {
+  display: block;
+  text-decoration: none;
+  margin: 10px;
+}

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
-import axios from 'axios';
+import fetch from '../../services/restApi';
 
 class MoviesPage extends Component {
   state = {
@@ -17,10 +17,8 @@ class MoviesPage extends Component {
   handlerSubmit = e => {
     e.preventDefault();
 
-    axios
-      .get(
-        `https://api.themoviedb.org/3/search/movie?api_key=cbf7b4582ce31cf384dd80d27cc60e4c&language=en-US&query=${this.state.query}&page=1&include_adult=true`,
-      )
+    fetch
+      .fetchSearch(this.state.query)
       .then(({ data }) => this.setState({ movies: data.results }));
   };
 

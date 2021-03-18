@@ -1,0 +1,45 @@
+.poster {
+  display: block;
+  width: 200px;
+  height: 300px;
+}
+.movie {
+  display: flex;
+  margin-top: 20px;
+  padding-left: 20px;
+  border-bottom: 3px solid rgb(0 0 0 / 50%);
+}
+.description {
+  margin-left: 20px;
+}
+
+.listGenre {
+  list-style: none;
+  display: flex;
+  padding: 0;
+}
+.itemGenre {
+  margin-right: 5px;
+}
+.listLink {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  border-bottom: 5px solid grey;
+  margin: 0;
+  padding-left: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.goBack {
+  padding: 5px;
+  margin-left: 20px;
+  border: 1 solid;
+  text-decoration: none;
+}
+
+.navLink {
+  margin-bottom: 10px;
+  text-decoration: none;
+}

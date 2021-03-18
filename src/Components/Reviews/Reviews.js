@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import fetch from '../../services/restApi';
 
 class Reviews extends Component {
   state = {
@@ -8,9 +8,7 @@ class Reviews extends Component {
 
   async componentDidMount() {
     const { movieId } = this.props.match.params;
-    const { data } = await axios.get(
-      `https://api.themoviedb.org/3/movie/${movieId}/reviews?api_key=cbf7b4582ce31cf384dd80d27cc60e4c&language=en-US&page=1`,
-    );
+    const { data } = await fetch.fetchReviews(movieId);
 
     this.setState({ reviews: data.results });
   }

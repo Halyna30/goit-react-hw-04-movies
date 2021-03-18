@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 import s from './HomePage.module.css';
+import fetch from '../../services/restApi';
 
 class HomePage extends Component {
   state = {
@@ -9,21 +9,22 @@ class HomePage extends Component {
   };
 
   async componentDidMount() {
-    const response = await axios.get(
-      'https://api.themoviedb.org/3/trending/all/day?api_key=cbf7b4582ce31cf384dd80d27cc60e4c',
-    );
-    this.setState({ movies: response.data.results });
+    const { data } = await fetch.fetchTrend();
+
+    this.setState({ movies: data.results });
   }
 
   render() {
     const { movies } = this.state;
     return (
       <>
-        <h1>Trending today</h1>
-        <ul>
+        <h1 className={s.title}>Trending today</h1>
+        <ul className={s.listMovies}>
           {movies.map(movie => (
             <li key={movie.id}>
-              <Link to={`/movies/${movie.id}`}>{movie.title}</Link>
+              <Link to={`/movies/${movie.id}`} className={s.link}>
+                {movie.title}
+              </Link>
             </li>
           ))}
         </ul>

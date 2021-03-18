@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import s from './Cast.module.css';
+import fetch from '../../services/restApi';
 
 class Cast extends Component {
   state = {
@@ -8,9 +9,7 @@ class Cast extends Component {
 
   async componentDidMount() {
     const { movieId } = this.props.match.params;
-    const { data } = await axios.get(
-      `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=cbf7b4582ce31cf384dd80d27cc60e4c&language=en-US`,
-    );
+    const { data } = await fetch.fetchCast(movieId);
 
     this.setState({ cast: data.cast });
   }
@@ -21,7 +20,11 @@ class Cast extends Component {
       <ul>
         {cast.map(item => (
           <li key={item.id}>
-            <img src={item.profile_path} alt="actor" />
+            <img
+              src={`https://image.tmdb.org/t/p/w500${item.profile_path}`}
+              alt="actor"
+              className={s.img}
+            />
             <h3>{item.name}</h3>
             <p>Character: {item.character}</p>
           </li>
