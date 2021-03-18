@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://src/views/HomePage/HomePage.module.css"],"names":[],"mappings":"AAAA,4BACE,eACF,CAEA,uBACE,WACF,CAEA,sBACE,aAAc,CACd,oBAAqB,CACrB,WACF","file":"home-page.1fb2b466.chunk.css","sourcesContent":[".listMovies {\n  list-style: none;\n}\n\n.title {\n  margin: 20px;\n}\n\n.link {\n  display: block;\n  text-decoration: none;\n  margin: 10px;\n}\n"]}
