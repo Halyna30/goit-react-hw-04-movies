@@ -21,23 +21,20 @@ class MoviesPage extends Component {
       .get(
         `https://api.themoviedb.org/3/search/movie?api_key=cbf7b4582ce31cf384dd80d27cc60e4c&language=en-US&query=${this.state.query}&page=1&include_adult=true`,
       )
-      .then(response => this.setState({ movies: response.data.results }));
+      .then(({ data }) => this.setState({ movies: data.results }));
   };
 
   render() {
+    const { movies, query } = this.state;
     return (
       <>
         <form onSubmit={this.handlerSubmit}>
-          <input
-            type="text"
-            onChange={this.inputChange}
-            value={this.state.query}
-          />
+          <input type="text" onChange={this.inputChange} value={query} />
           <button type="submit">search</button>
         </form>
-        {this.state.movies && (
+        {movies && (
           <ul>
-            {this.state.movies.map(movie => (
+            {movies.map(movie => (
               <li>
                 <NavLink to={`${this.props.match.url}/${movie.id}`}>
                   {movie.original_title}

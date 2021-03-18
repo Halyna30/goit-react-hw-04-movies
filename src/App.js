@@ -1,9 +1,20 @@
-import React from 'react';
+import { lazy, Suspense } from 'react';
 import { Route, NavLink, Switch } from 'react-router-dom';
-import HomePage from './views/HomePage';
-import MoviesPage from './views/MoviesPage';
-import MovieDetailsPage from './views/MovieDetailsPage';
-import NotFoundPage from './views/NotFoundPage';
+
+const HomePage = lazy(() =>
+  import('./views/HomePage' /* webpackChunkName: "home-page" */),
+);
+const MoviesPage = lazy(() =>
+  import('./views/MoviesPage' /* webpackChunkName: "movies-page" */),
+);
+const MovieDetailsPage = lazy(() =>
+  import(
+    './views/MovieDetailsPage' /* webpackChunkName: "movies-details-page" */
+  ),
+);
+const NotFoundPage = lazy(() =>
+  import('./views/NotFoundPage' /* webpackChunkName: "not-found-page" */),
+);
 
 const App = () => (
   <>
@@ -19,12 +30,14 @@ const App = () => (
         </NavLink>
       </li>
     </ul>
-    <Switch>
-      <Route exact path="/" component={HomePage} />
-      <Route exact path="/movies" component={MoviesPage} />
-      <Route path="/movies/:movieId" component={MovieDetailsPage} />
-      <Route component={NotFoundPage} />
-    </Switch>
+    <Suspense fallback={<p>Loading...</p>}>
+      <Switch>
+        <Route exact path="/" component={HomePage} />
+        <Route exact path="/movies" component={MoviesPage} />
+        <Route path="/movies/:movieId" component={MovieDetailsPage} />
+        <Route component={NotFoundPage} />
+      </Switch>
+    </Suspense>
   </>
 );
 

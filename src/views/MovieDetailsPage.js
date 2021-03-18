@@ -12,14 +12,15 @@ class MovieDetailsPage extends Component {
 
   async componentDidMount() {
     const { movieId } = this.props.match.params;
-    const response = await axios.get(
+    const { data } = await axios.get(
       `https://api.themoviedb.org/3/movie/${movieId}?api_key=cbf7b4582ce31cf384dd80d27cc60e4c&language=en-US`,
     );
-    this.setState({ movie: response.data, genres: response.data.genres });
+    this.setState({ movie: data, genres: data.genres });
   }
 
   render() {
     const { title, vote_average, overview, poster_path } = this.state.movie;
+    const { url, path } = this.props.match;
 
     return (
       <>
@@ -35,11 +36,11 @@ class MovieDetailsPage extends Component {
           ))}
         </ul>
         <ul>
-          <NavLink to={`${this.props.match.url}/cast`}>Cast</NavLink>
-          <NavLink to={`${this.props.match.url}/reviews`}>Reviews</NavLink>
+          <NavLink to={`${url}/cast`}>Cast</NavLink>
+          <NavLink to={`${url}/reviews`}>Reviews</NavLink>
         </ul>
-        <Route path={`${this.props.match.path}/cast`} component={Cast} />
-        <Route path={`${this.props.match.path}/reviews`} component={Reviews} />
+        <Route path={`${path}/cast`} component={Cast} />
+        <Route path={`${path}/reviews`} component={Reviews} />
       </>
     );
   }

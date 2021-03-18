@@ -16,13 +16,14 @@ class HomePage extends Component {
   }
 
   render() {
+    const { movies } = this.state;
     return (
       <>
         <h1>Trending today</h1>
         <ul>
-          {this.state.movies.map(movie => (
+          {movies.map(movie => (
             <li key={movie.id}>
-              <Link to={`/movies/${movie.id}`}>{movie.original_title}</Link>
+              <Link to={`/movies/${movie.id}`}>{movie.title}</Link>
             </li>
           ))}
         </ul>
@@ -32,8 +33,3 @@ class HomePage extends Component {
 }
 
 export default HomePage;
-
-// https://api.themoviedb.org/3/movie/550?api_key=cbf7b4582ce31cf384dd80d27cc60e4c
-// cbf7b4582ce31cf384dd80d27cc60e4c
-
-// eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjYmY3YjQ1ODJjZTMxY2YzODRkZDgwZDI3Y2M2MGU0YyIsInN1YiI6IjYwNTEwMTVjNGNhNjc2MDA2YjgyODA4ZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.8c80o7KEU0rT3rFLLBgf-FDXWmv-KuIThqchTeyqPtQ
