@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import fetch from '../../services/restApi';
+import PropTypes from 'prop-types';
 
 class MoviesPage extends Component {
   state = {
@@ -45,5 +46,9 @@ class MoviesPage extends Component {
     );
   }
 }
+
+MoviesPage.propTypes = {
+  url: PropTypes.string.isRequired,
+};
 
 export default MoviesPage;

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import fetch from '../../services/restApi';
+import PropTypes from 'prop-types';
 
 class Reviews extends Component {
   state = {
@@ -31,5 +32,9 @@ class Reviews extends Component {
     );
   }
 }
+
+Reviews.propTypes = {
+  movieId: PropTypes.string.isRequired,
+};
 
 export default Reviews;

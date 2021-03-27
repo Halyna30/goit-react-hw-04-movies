@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import s from './Cast.module.css';
 import fetch from '../../services/restApi';
+import PropTypes from 'prop-types';
 
 class Cast extends Component {
   state = {
@@ -33,5 +34,9 @@ class Cast extends Component {
     );
   }
 }
+
+Cast.propTypes = {
+  movieId: PropTypes.string.isRequired,
+};
 
 export default Cast;

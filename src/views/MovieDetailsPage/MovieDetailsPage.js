@@ -4,6 +4,7 @@ import Cast from '../../Components/Cast/Cast';
 import Reviews from '../../Components/Reviews/Reviews';
 import s from './MovieDetailsPage.module.css';
 import fetch from '../../services/restApi';
+import PropTypes from 'prop-types';
 
 class MovieDetailsPage extends Component {
   state = {
@@ -70,5 +71,11 @@ class MovieDetailsPage extends Component {
     );
   }
 }
+
+MovieDetailsPage.propTypes = {
+  url: PropTypes.string.isRequired,
+  path: PropTypes.string.isRequired,
+  movieId: PropTypes.string.isRequired,
+};
 
 export default MovieDetailsPage;
