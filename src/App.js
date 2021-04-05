@@ -1,5 +1,6 @@
 import { lazy, Suspense } from 'react';
 import { Route, NavLink, Switch } from 'react-router-dom';
+import routes from './routes';
 
 const HomePage = lazy(() =>
   import('./views/HomePage/HomePage' /* webpackChunkName: "home-page" */),
@@ -43,9 +44,9 @@ const App = () => (
     </ul>
     <Suspense fallback={<p>Loading...</p>}>
       <Switch>
-        <Route exact path="/" component={HomePage} />
-        <Route exact path="/movies" component={MoviesPage} />
-        <Route path="/movies/:movieId" component={MovieDetailsPage} />
+        <Route exact path={routes.home} component={HomePage} />
+        <Route exact path={routes.movies} component={MoviesPage} />
+        <Route path={routes.movieDetails} component={MovieDetailsPage} />
         <Route component={NotFoundPage} />
       </Switch>
     </Suspense>

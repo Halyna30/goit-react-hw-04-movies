@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 import fetch from '../../services/restApi';
 import PropTypes from 'prop-types';
 
@@ -25,6 +25,8 @@ class MoviesPage extends Component {
 
   render() {
     const { movies, query } = this.state;
+    const { location } = this.props;
+
     return (
       <>
         <form onSubmit={this.handlerSubmit}>
@@ -35,7 +37,12 @@ class MoviesPage extends Component {
           <ul>
             {movies.map(movie => (
               <li>
-                <NavLink to={`${this.props.match.url}/${movie.id}`}>
+                <NavLink
+                  to={{
+                    pathname: `${this.props.match.url}/${movie.id}`,
+                    state: { from: location },
+                  }}
+                >
                   {movie.original_title}
                 </NavLink>
               </li>
@@ -51,4 +58,4 @@ MoviesPage.propTypes = {
   url: PropTypes.string.isRequired,
 };
 
-export default MoviesPage;
+export default withRouter(MoviesPage);

@@ -5,6 +5,7 @@ import Reviews from '../../Components/Reviews/Reviews';
 import s from './MovieDetailsPage.module.css';
 import fetch from '../../services/restApi';
 import PropTypes from 'prop-types';
+import routes from '../../routes';
 
 class MovieDetailsPage extends Component {
   state = {
@@ -17,6 +18,10 @@ class MovieDetailsPage extends Component {
     const { data } = await fetch.fetchMovie(movieId);
     this.setState({ movie: data, genres: data.genres });
   }
+  handlerGoBack = () => {
+    const { location, history } = this.props;
+    history.push(location?.state?.from || routes.home);
+  };
 
   render() {
     const { title, vote_average, overview, poster_path } = this.state.movie;
@@ -24,9 +29,9 @@ class MovieDetailsPage extends Component {
 
     return (
       <>
-        <NavLink to="/" className={s.goBack}>
+        <button type="button" onClick={this.handlerGoBack}>
           go back
-        </NavLink>
+        </button>
         <section className={s.movie}>
           <img
             className={s.poster}
